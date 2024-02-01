@@ -15,11 +15,20 @@ var timer = setInterval(function () {
     h1.innerText = 'Time Left: ' + time;
 
     // If the time variable equals zero, stop the interval
-        // Pass interval into the clearInterval function
-      if (time >= 0) {  
-        clearInterval(timer);
-      }
-    }, 1000);
+    // Pass interval into the clearInterval function
+    if (time >= 0) {
+        endGame();
+    }
+}, 1000);
+
+// Set message when time runs out
+function endGame() {
+    clearInterval(timer);
+
+    var messageParagraph = document.querySelector('#message');
+
+    messageParagraph.innerText = 'Time Over';
+}
 
 
 
@@ -30,31 +39,31 @@ var index = 0
 function checkAnswer(eventObj) {
     //Grab the targeted element that was clicked
     var el = eventObj.target;
-    
+
     // Determine conditionally if the el was a button
     if (el.tagName === 'BUTTON') {
-        
+
         // Store the suer's answer
         var userAnswer = el.textContent;
-        
-        if (userAnswer === questions[index].correctAnswer){
+
+        if (userAnswer === questions[index].correctAnswer) {
             alert("correct")
-        }else {
+        } else {
             alert("incorrect")
         }
-        
-        
+
+
     }
     index++
     // If statement check if last question go to saved high score page
 
-    
+
     //else render next questions
-    document.querySelector("#question").textContent=questions[index].questionText
-    document.querySelector("#btn1").textContent=questions[index].choices[0]
-    document.querySelector("#btn2").textContent=questions[index].choices[1]
-    document.querySelector("#btn3").textContent=questions[index].choices[2]
-    document.querySelector("#btn4").textContent=questions[index].choices[3]
+    document.querySelector("#question").textContent = questions[index].questionText
+    document.querySelector("#btn1").textContent = questions[index].choices[0]
+    document.querySelector("#btn2").textContent = questions[index].choices[1]
+    document.querySelector("#btn3").textContent = questions[index].choices[2]
+    document.querySelector("#btn4").textContent = questions[index].choices[3]
 }
 
 // Set a click listener on the parent div of all the choice buttons
