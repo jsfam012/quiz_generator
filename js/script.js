@@ -1,3 +1,28 @@
+var h1 = document.querySelector('h1');
+var time = 10;
+
+// Two time count function
+
+// setTimeout(function() {
+//     console.log('timed out');
+// }, 2000)
+
+// Use it for count down
+var timer = setInterval(function () {
+    // Decrease time by one
+    time--;
+    // Set the text of our h1 to 'Time Left: <time>'
+    h1.innerText = 'Time Left: ' + time;
+
+    // If the time variable equals zero, stop the interval
+        // Pass interval into the clearInterval function
+      if (time >= 0) {  
+        clearInterval(timer);
+      }
+    }, 1000);
+
+
+
 // Select the choices div
 var choicesDiv = document.querySelector('.choices');
 var index = 0
