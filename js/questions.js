@@ -39,7 +39,7 @@ var questions = [
         ],
         correctAnswer: "To check the data type of a value"
     },
-]
+];
 //     {
 //         questionText: 'What does HTML stand for?',
 //         choices: [
