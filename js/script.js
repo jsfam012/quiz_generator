@@ -27,15 +27,41 @@ function checkAnswer(eventObj) {
         // Store the user's answer
         var userAnswer = el.innerText;
 
+        //Select the answer alert paragraph
+        var answerAlert = document.querySelector('.answer-alert');
         // Determine if the user's answer (button text) is equal to the current question's corect answer
-        if (userAnswer === questions[0].correctAnswer) {
-            console.log('Correct!');
-            // If incorrect
+        if (userAnswer === currentQuestionObj.correctAnswer) {
+           // Show the anser alert with the text of "Correct!"
+            answerAlert.innerText = 'Correct!';
+
+            // Show the answer alert paragraph
+            answerAlert.classList.add('show');
+
         } else {
-            console.log('Wrong!');
+           // Show the answer alert with the text of "Wrong!" 
+           answerAlert.innerText = 'Wrong!';
+
+            // Show the answer alert paragraph
+            answerAlert.classList.add('show');
+            // Decrease the time by 10 seconds
             time -= 5;
-            
+
         }
+
+        //wait 1.5 seconds and then move on to the next question
+        setTimeout(function() {
+            //Hide the answer alert paragraph
+            answerAlert.classList.remove('show');
+            // Increase questionIndex by one
+            questionIndex++;
+            // If questionIndex is equal to questions.length -1, then endGame
+            if (questionIndex === question.length - 1) {
+                endGame();
+            } else {
+            // Else call displayQuestion
+            displayQuestion();
+            }
+        }, 1500);
     }
 }
 
@@ -51,9 +77,13 @@ function displayQuestion() {
     // Set the innerText of our textEl to the currentQuestion questionText property
     textEl.innerText = currentQuestionObj.questionText;
 
+
+    // Empty the choices div
+    choicesDiv.innerHTML = '';
+
     // Loop over each choice string in the currentQuestion choices array, and for each string output a button into the choices div with the innerText tof the choice string
     for (var i = 0; i < currentQuestionObj.choices.length; i++) {
-        
+
         // Create a button element
         var choiceBtn = document.createElement('button');
 
@@ -66,19 +96,39 @@ function displayQuestion() {
     }
 }
 
-// Start the timer countdown and decrease the time variable by one every second until time runs out.
-function startCountdown() {
-    // Start an interval that repeats every second(1000ms)
-    // Store the interval to a variable so we can clear or stop it later on 
-    timer = setInterval(function() {
-        // Select the time output element
+// Clears the timer
+// Shows the user's score
+// Resets all values for the user to play the game again
+function endGame() {
+    // Stop(clear) the timer interval
+    clearInterval(timer);
+    
+    // Reset the time
+    time = 60;
+    // Reset the question index
+    questionIndex = 0;
+    
+    // Hide the question wrap
+    questionWrap.classList.add('hide');
+    // Show user their score wrap
+}
 
+// Start the timer countdown and decrease the time variable by one every second until time runs out
+function startCoundown() {
+    // Set the inner text of the timeOutput to say 60 seconds
+    timeOutput.innerText = 'Time: ' + time;
 
-        // Decrease our time variable by one
-
-        // Set the inner text of the ouput element to our time variable
-
-
+    //Start an interval that repeats every second(1000ms)
+    //Store the interval to a variable so we can clear or stop it later on
+    timer = setInterval(function () {
+        // Decrease out time variable by one
+        time--;
+        // Set the inner text of the timeOutput element to our time variable value
+        timeOutput.innerText = 'Time: ' + (time >= 0 ? time : 0);
+        // Check if time is less than or equal to zero and if so, end the game
+        if (time <= 0) {
+            endGame();
+        }
     }, 1000);
 }
 
@@ -107,14 +157,6 @@ startBtn.addEventListener('click', startQuiz);
 // btn.addEventListener('click', checkAnswer)
 
 
-
-
-
-
-
-
-
-
 var h1 = document.querySelector('h1');
 var time = 10;
 var timer;
@@ -132,26 +174,26 @@ function endGame() {
 // Start the quiz
 function startGame() {
     timer = setInterval(function () {
-    // Decrease time by one
-    time--;
-    // Set the text of our h1 to 'Time Left: <time>'
-    h1.innerText = 'Time Left: ' + time;
+        // Decrease time by one
+        time--;
+        // Set the text of our h1 to 'Time Left: <time>'
+        h1.innerText = 'Time Left: ' + time;
 
-    // If the time variable equals zero, stop the interval
-    // Pass interval into the clearInterval function
-    if (time <= 0) {
-        endGame();
-    }
-}, 1000);
+        // If the time variable equals zero, stop the interval
+        // Pass interval into the clearInterval function
+        if (time <= 0) {
+            endGame();
+        }
+    }, 1000);
 }
 
 var questionWrap = document.querySelector
-('#question-wrap');
+    ('#question-wrap');
 
-questionWrap.innerHTML =
-    '<div>' + '<h3>' + questions[0].questionsText + '</h3>' + "</div>'"
+// questionWrap.innerHTML =
+//     '<div>' + '<h3>' + questions[0].questionsText + '</h3>' + "</div>'"
 
-startGame();
+// startGame();
 
 
 // Below is with tutor
