@@ -1,8 +1,16 @@
 // Select the choices div
 var choicesDiv = document.querySelector('.choices');
 
+// Store a variable that tracks which question the user is currently on
+var questionIndex = 0;
+var time = 60;
+
 // Function that checks if the button pressed contains the correct answer
 function checkAnswer(eventObj) {
+    eventObj.stopPropagation();
+
+    var currentQuestionObj = questions[questionIndex];
+    
     // Grab the targeted element that was clicked
     var el = eventObj.target;
 
@@ -12,8 +20,9 @@ function checkAnswer(eventObj) {
         var userAnswer = el.innerText;
 
         if (userAnswer === questions[0].correctAnswer) {
-
+            console.log('Correct!');
         } else {
+            console.log('Wrong!');
             
         }
     }
@@ -65,14 +74,13 @@ function startGame() {
         endGame();
     }
 }, 1000);
+}
 
 var questionWrap = document.querySelector
 ('#question-wrap');
 
 questionWrap.innerHTML =
     '<div>' + '<h3>' + questions[0].questionsText + '</h3>' + "</div>'"
-
-}
 
 startGame();
 

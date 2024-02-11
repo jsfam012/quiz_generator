@@ -1,3 +1,45 @@
+/* Resets */
+* {
+    font-family: sans-serif;
+}
+
+/* Global Classes */
+.hide {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+
+}
+
+/* Custom Styles */
+header h3 {
+    margin: 0;
+
+}
+
+.answer-alert {
+    border-top: 1px solid #aaa;
+    padding-top: 5px;
+    font-style: italic;
+    color: #999;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.answer-alert.show {
+    opacity: 1;
+}
+
 /* Message pop up when time runs out */
 #message {
     position: absolute;
