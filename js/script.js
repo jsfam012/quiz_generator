@@ -4,6 +4,7 @@ var startBtn = document.querySelector('#start');
 var startWrap = document.querySelector('.start-wrap');
 var questionWrap = document.querySelector('.question-wrap');
 var timeOutput = document.querySelector('#time-output');
+var scoreWrap = document.querySelector('.score-wrap');
 
 // Store a variable that tracks which question the user is currently on
 var questionIndex = 0;
@@ -12,10 +13,42 @@ var time = 60;
 // Store a variable that hlds the interval
 var timer;
 
+// Store a variable that will be used to determine if a user has already clicked answer
+var clicked = false;
+
+// Clears the timer
+// Shows the user's score
+// Resets all values for the user to play the game again
+function endGame() {
+    // Stop(clear) the timer interval
+    clearInterval(timer);
+
+
+    // Hide the question wrap
+    questionWrap.classList.add('hide');
+
+    //Select the score output h2
+    var scoreOutput = document.querySelector('#score-output');
+
+    // Set the score output h2 innerText to their score(time)
+    scoreOutput.innerText = 'Score: ' + time;
+
+    // Show user their score wrap
+    scoreWrap.classList.remove('hide');
+}
+
+
 // Function that checks if the button pressed contains the correct answer
 // Utilizing event delegation to capture the button click
 function checkAnswer(eventObj) {
     eventObj.stopPropagation();
+
+    // If the user has clicked an answer already, don't let them click another answer until the next question
+    if (clicked) {
+        // Exit the function on this line
+        // No code below will run
+        return;
+    }
 
     var currentQuestionObj = questions[questionIndex];
 
@@ -31,25 +64,30 @@ function checkAnswer(eventObj) {
         var answerAlert = document.querySelector('.answer-alert');
         // Determine if the user's answer (button text) is equal to the current question's corect answer
         if (userAnswer === currentQuestionObj.correctAnswer) {
-           // Show the anser alert with the text of "Correct!"
+            // Show the anser alert with the text of "Correct!"
             answerAlert.innerText = 'Correct!';
 
             // Show the answer alert paragraph
             answerAlert.classList.add('show');
 
         } else {
-           // Show the answer alert with the text of "Wrong!" 
-           answerAlert.innerText = 'Wrong!';
+            // Show the answer alert with the text of "Wrong!" 
+            answerAlert.innerText = 'Wrong!';
 
             // Show the answer alert paragraph
             answerAlert.classList.add('show');
             // Decrease the time by 10 seconds
             time -= 5;
 
+            // If time minus 15 is less than zero than set time to zero, else -= 15 from time
+            time = (time - 15) < 0 ? 0 : time - 15;
+
         }
 
+        clicked = true;
+
         //wait 1.5 seconds and then move on to the next question
-        setTimeout(function() {
+        setTimeout(function () {
             //Hide the answer alert paragraph
             answerAlert.classList.remove('show');
             // Increase questionIndex by one
@@ -58,8 +96,10 @@ function checkAnswer(eventObj) {
             if (questionIndex === question.length - 1) {
                 endGame();
             } else {
-            // Else call displayQuestion
-            displayQuestion();
+                // Else call displayQuestion
+                displayQuestion();
+                // Allow the user to click again
+                clicked = false;
             }
         }, 1500);
     }
@@ -96,23 +136,6 @@ function displayQuestion() {
     }
 }
 
-// Clears the timer
-// Shows the user's score
-// Resets all values for the user to play the game again
-function endGame() {
-    // Stop(clear) the timer interval
-    clearInterval(timer);
-    
-    // Reset the time
-    time = 60;
-    // Reset the question index
-    questionIndex = 0;
-    
-    // Hide the question wrap
-    questionWrap.classList.add('hide');
-    // Show user their score wrap
-}
-
 // Start the timer countdown and decrease the time variable by one every second until time runs out
 function startCoundown() {
     // Set the inner text of the timeOutput to say 60 seconds
@@ -122,9 +145,9 @@ function startCoundown() {
     //Store the interval to a variable so we can clear or stop it later on
     timer = setInterval(function () {
         // Decrease out time variable by one
-        time--;
+        time = (time - 1) < 0 ? 0 : time - 1;
         // Set the inner text of the timeOutput element to our time variable value
-        timeOutput.innerText = 'Time: ' + (time >= 0 ? time : 0);
+        timeOutput.innerText = 'Time: ' + time;
         // Check if time is less than or equal to zero and if so, end the game
         if (time <= 0) {
             endGame();
@@ -134,6 +157,10 @@ function startCoundown() {
 
 // show the first quiz question, hide the start wrap and start the timer
 function startQuiz() {
+    // Reset the time
+    time = 60;
+    // Reset the question index
+    questionIndex = 0;
     // Hide the start wrap
     startWrap.classList.add('hide');
     // Show the question wrap
@@ -189,65 +216,3 @@ function startGame() {
 
 var questionWrap = document.querySelector
     ('#question-wrap');
-
-// questionWrap.innerHTML =
-//     '<div>' + '<h3>' + questions[0].questionsText + '</h3>' + "</div>'"
-
-// startGame();
-
-
-// Below is with tutor
-
-// // Select the choices div
-// var choicesDiv = document.querySelector('.choices');
-// var index = 0
-// // Function that checks if the button pressed contains the correct answer
-// function checkAnswer(eventObj) {
-//     //Grab the targeted element that was clicked
-//     var el = eventObj.target;
-
-//     // Determine conditionally if the el was a button
-//     if (el.tagName === 'BUTTON') {
-
-//         // Store the suer's answer
-//         var userAnswer = el.textContent;
-
-//         if (userAnswer === questions[index].correctAnswer) {
-//             alert("correct")
-//         } else {
-//             alert("incorrect")
-//         }
-
-
-//     }
-//     index++
-//     // If statement check if last question go to saved high score page
-
-
-//     //else render next questions
-//     document.querySelector("#question").textContent = questions[index].questionText
-//     document.querySelector("#btn1").textContent = questions[index].choices[0]
-//     document.querySelector("#btn2").textContent = questions[index].choices[1]
-//     document.querySelector("#btn3").textContent = questions[index].choices[2]
-//     document.querySelector("#btn4").textContent = questions[index].choices[3]
-// }
-
-// // Set a click listener on the parent div of all the choice buttons
-// choicesDiv.addEventListener('click', checkAnswer);
-
-
-
-
-
-
-
-
-
-
-
-
-
-// for (var i = 0; i < btns.length; i++) {
-//     // Add a click listenre to the button
-//     btns[i].addEventListener('click', checkAnswer);
-// }
