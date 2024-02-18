@@ -5,6 +5,7 @@ var startWrap = document.querySelector('.start-wrap');
 var questionWrap = document.querySelector('.question-wrap');
 var timeOutput = document.querySelector('#time-output');
 var scoreWrap = document.querySelector('.score-wrap');
+var saveBtn = document.querySelector('#save-score');
 
 // Store a variable that tracks which question the user is currently on
 var questionIndex = 0;
@@ -93,7 +94,7 @@ function checkAnswer(eventObj) {
             // Increase questionIndex by one
             questionIndex++;
             // If questionIndex is equal to questions.length -1, then endGame
-            if (questionIndex === question.length - 1) {
+            if (questionIndex === questions.length) {
                 endGame();
             } else {
                 // Else call displayQuestion
@@ -137,7 +138,7 @@ function displayQuestion() {
 }
 
 // Start the timer countdown and decrease the time variable by one every second until time runs out
-function startCoundown() {
+function startCountdown() {
     // Set the inner text of the timeOutput to say 60 seconds
     timeOutput.innerText = 'Time: ' + time;
 
@@ -155,9 +156,30 @@ function startCoundown() {
     }, 1000);
 }
 
+//Get the old scores from local Storage and using the initials and time variable, add a new object to the highscore
+//Then overwrite the old highscores array with the newly updated array
+function saveScore() {
+    // Select the input from the DOM
+    var initialInput = document.querySelector('#initial-input');
+    // Get the user's initials from the input
+    var initialValue = initialInput.value;
+    //Pull the raw highscores array from localStorage
+    var rawData = localStorage.getItem('highscore');
+    var highscores = JSON.parse(rawData) || [];
+
+    // Push a new object to the highscores array
+    highscores.push({
+        initials: initialValue,
+        score: time
+    });
+
+    // Store the highscores to localStorage
+    localStorage.setItem('highscores', JSON.stringify)
+}
+
 // show the first quiz question, hide the start wrap and start the timer
 function startQuiz() {
-    // Reset the time
+    // Reset the time 
     time = 60;
     // Reset the question index
     questionIndex = 0;
@@ -177,6 +199,9 @@ choicesDiv.addEventListener('click', checkAnswer);
 // Add a click listener to the start button
 startBtn.addEventListener('click', startQuiz);
 
+//Add a click listener to the save button
+saveBtn.addEventListener('click', saveScore);
+
 // // Select the first button from the DOM
 // var btn = document.querySelector('button');
 
@@ -184,35 +209,35 @@ startBtn.addEventListener('click', startQuiz);
 // btn.addEventListener('click', checkAnswer)
 
 
-var h1 = document.querySelector('h1');
-var time = 10;
-var timer;
+// var h1 = document.querySelector('h1');
+// var time = 10;
+// var timer;
 
-// Set message when time runs out
-function endGame() {
-    clearInterval(timer);
+// // Set message when time runs out
+// function endGame() {
+//     clearInterval(timer);
 
-    var messageParagraph = document.querySelector('#message');
+//     var messageParagraph = document.querySelector('#message');
 
-    messageParagraph.innerText = 'Time Over';
-    messageParagraph.style.display = 'initial';
-}
+//     messageParagraph.innerText = 'Time Over';
+//     messageParagraph.style.display = 'initial';
+// }
 
-// Start the quiz
-function startGame() {
-    timer = setInterval(function () {
-        // Decrease time by one
-        time--;
-        // Set the text of our h1 to 'Time Left: <time>'
-        h1.innerText = 'Time Left: ' + time;
+// // Start the quiz
+// function startGame() {
+//     timer = setInterval(function () {
+//         // Decrease time by one
+//         time--;
+//         // Set the text of our h1 to 'Time Left: <time>'
+//         h1.innerText = 'Time Left: ' + time;
 
-        // If the time variable equals zero, stop the interval
-        // Pass interval into the clearInterval function
-        if (time <= 0) {
-            endGame();
-        }
-    }, 1000);
-}
+//         // If the time variable equals zero, stop the interval
+//         // Pass interval into the clearInterval function
+//         if (time <= 0) {
+//             endGame();
+//         }
+//     }, 1000);
+// }
 
-var questionWrap = document.querySelector
-    ('#question-wrap');
+// var questionWrap = document.querySelector
+//     ('#question-wrap');
