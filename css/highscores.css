@@ -1,0 +1,24 @@
+.highscores, .highscores-output {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.highscores {
+    display: block;
+    /* display: inline-block; */
+    text-align: center;
+    /* margin: 0 auto; */
+    color: rgb(233, 14, 14);
+    border-bottom: 1px solid;
+    padding: 2px;
+}
+
+#goback {
+    border-radius: 5px;
+    color: lightskyblue;
+    background-color: blue;
+    cursor: pointer;
+}

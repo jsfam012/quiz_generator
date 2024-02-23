@@ -25,7 +25,7 @@
 /* Custom Styles */
 header h3 {
     margin: 5px;
-    color: rgb(46, 160, 71);
+    color: #e23f3f;
 }
 
 /* .start-warp {
@@ -37,22 +37,55 @@ header h3 {
 } */
 
 #title {
-    color: red !important;
+    color: rgb(115, 37, 204);
+    font-weight: bold;
+}
+
+#intro {
+    font-weight: bold;
+}
+
+#start, #save-score {
+    border-radius: 5px;
+    color: lightskyblue;
+    background-color: blue;
+    cursor: pointer;
+}
+
+#start:hover {
+    color: pink;
+}
+
+/* .choices {
+    border-radius: 5px;
+    color: lightskyblue;
+    background-color: blue;
+    cursor: pointer;
+} */
+
+.question-text, .choices {
+    text-align: center;
 }
 
 .answer-alert {
-    border-top: 1px solid #aaa;
+    border-top: 2px solid #aaa;
     padding-top: 5px;
     font-style: italic;
-    color: #999;
+    color: #e23f3f;
     opacity: 0;
     transition: opacity 1s;
+    font-size: 25px;
 }
 
 .answer-alert.show {
     opacity: 1;
 }
 
+#score-save {
+    font-weight: bold;
+    color: rgb(115, 37, 204);
+
+}
 
 
 /* Message pop up when time runs out */

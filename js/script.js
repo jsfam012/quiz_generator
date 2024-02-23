@@ -73,7 +73,7 @@ function checkAnswer(eventObj) {
 
         } else {
             // Show the answer alert with the text of "Wrong!" 
-            answerAlert.innerText = 'Wrong!';
+            answerAlert.innerText = 'Incorect!';
 
             // Show the answer alert paragraph
             answerAlert.classList.add('show');
