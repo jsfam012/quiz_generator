@@ -39,18 +39,18 @@ var questions = [
         ],
         correctAnswer: "To check the data type of a value"
     },
+    {
+        questionText: 'What does HTML stand for?',
+        choices: [
+            'Hyper Text Markup Language', 
+            'Hyperlinks and Text Markup Language', 
+            'Home Tool Markup Language', 
+            'Hyperlinks and Text Markup Leveler'
+        ],
+        correctAnswer: 'Hyper Text Markup Language'
+    },
 ];
-//     {
-//         questionText: 'What does HTML stand for?',
-//         choices: [
-//             'Hyper Text Markup Language', 
-//             'Hyperlinks and Text Markup Language', 
-//             'Home Tool Markup Language', 
-//             'Hyperlinks and Text Markup Leveler'
-//         ],
-//         correctAnswer: 'Hyper Text Markup Language'
-//     },
-//     {
+    //     {
 //         questionText: 'What is the result of 10 - "5" in JavaScript?',
 //         choices: [
 //             '5', 

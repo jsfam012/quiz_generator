@@ -102,7 +102,7 @@ function checkAnswer(eventObj) {
                 // Allow the user to click again
                 clicked = false;
             }
-        }, 1500);
+        }, 1000);
     }
 }
 
@@ -164,7 +164,8 @@ function saveScore() {
     // Get the user's initials from the input
     var initialValue = initialInput.value;
     //Pull the raw highscores array from localStorage
-    var rawData = localStorage.getItem('highscore');
+    var rawData = localStorage.getItem('highscores');
+    // Pull the highscores array if it already exists.  If it doesn't, create an empty aray
     var highscores = JSON.parse(rawData) || [];
 
     // Push a new object to the highscores array
@@ -174,7 +175,12 @@ function saveScore() {
     });
 
     // Store the highscores to localStorage
-    localStorage.setItem('highscores', JSON.stringify)
+    localStorage.setItem('highscores', JSON.stringify(highscores));
+
+    // Navigate the user to the highscores.html file
+    window.location = './highscores.html';
+
+
 }
 
 // show the first quiz question, hide the start wrap and start the timer

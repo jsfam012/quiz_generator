@@ -18,13 +18,26 @@
 
 .justify-between {
     justify-content: space-between;
-
+    font-size: 20px;
+    
 }
 
 /* Custom Styles */
 header h3 {
-    margin: 0;
+    margin: 5px;
+    color: rgb(46, 160, 71);
+}
 
+/* .start-warp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} */
+
+#title {
+    color: red !important;
 }
 
 .answer-alert {
@@ -39,6 +52,8 @@ header h3 {
 .answer-alert.show {
     opacity: 1;
 }
+
+
 
 /* Message pop up when time runs out */
 #message {
