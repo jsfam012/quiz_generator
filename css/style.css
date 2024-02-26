@@ -66,17 +66,26 @@ header h3 {
     cursor: pointer;
 } */
 
-.question-text, .choices {
+/* .question-text, .choices {
     text-align: center;
-}
+
+    
+} */
 
 .question-text {
     font-size: 50px;
+    color: rgb(115, 37, 204);
+    text-align: center;
+
+
 }
 
 .choices {
     font-size: 35px;
     color: red;
+    text-align: center;
+
+  
 }
 .answer-alert {
     border-top: 2px solid #aaa;
