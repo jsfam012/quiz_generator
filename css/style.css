@@ -39,10 +39,12 @@ header h3 {
 #title {
     color: rgb(115, 37, 204);
     font-weight: bold;
+    font-size: 40px;
 }
 
 #intro {
     font-weight: bold;
+    font-size: 30px;
 }
 
 #start, #save-score {
@@ -50,6 +52,7 @@ header h3 {
     color: lightskyblue;
     background-color: blue;
     cursor: pointer;
+    font-size: 25px;
 }
 
 #start:hover {
@@ -67,6 +70,14 @@ header h3 {
     text-align: center;
 }
 
+.question-text {
+    font-size: 50px;
+}
+
+.choices {
+    font-size: 35px;
+    color: red;
+}
 .answer-alert {
     border-top: 2px solid #aaa;
     padding-top: 5px;
