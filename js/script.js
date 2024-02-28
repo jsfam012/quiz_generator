@@ -127,6 +127,7 @@ function displayQuestion() {
 
         // Create a button element
         var choiceBtn = document.createElement('button');
+        choiceBtn.classList.add('choicebtn');
 
         // Set the text of the button to the current choice string in the loop
         choiceBtn.innerText = currentQuestionObj.choices[i];

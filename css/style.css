@@ -80,13 +80,13 @@ header h3 {
 
 }
 
-.choices {
+.choiceBtn {
     font-size: 35px;
     color: red;
     text-align: center;
 
-  
-}
+  }
+
 .answer-alert {
     border-top: 2px solid #aaa;
     padding-top: 5px;
