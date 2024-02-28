@@ -22,3 +22,8 @@
     background-color: blue;
     cursor: pointer;
 }
+
+.center-btn {
+    display: flex;
+    justify-content: center;
+}

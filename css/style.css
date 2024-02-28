@@ -80,10 +80,20 @@ header h3 {
 
 }
 
-.choiceBtn {
-    font-size: 35px;
+.choices {
+    text-align: center;
+
+}
+
+.inputbox {
+    font-size: 25px;
+}
+
+.choicebtn {
+    font-size: 20px;
     color: red;
     text-align: center;
+    margin: 0 10px;
 
   }
 
